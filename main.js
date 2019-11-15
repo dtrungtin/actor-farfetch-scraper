@@ -1,6 +1,8 @@
 const Apify = require('apify');
 const url = require('url');
 const querystring = require('querystring');
+const _ = require('underscore');
+const safeEval = require('safe-eval');
 
 const { log } = Apify.utils;
 log.setLevel(log.LEVELS.WARNING);
