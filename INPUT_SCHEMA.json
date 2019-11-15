@@ -9,7 +9,7 @@
             "editor": "requestListSources",
             "description": "List of URLs that will be scraped or crawled.",
             "prefill": [
-                { "url": "https://www.bloomingdales.com/" }
+                { "url": "https://www.farfetch.com/" }
             ]
         },
         "maxItems": {
