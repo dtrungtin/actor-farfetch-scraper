@@ -154,7 +154,7 @@ Apify.main(async () => {
                 const itemId = $('[itemprop=productID]').attr('content');
                 const price = $('[aria-label="[Product information]"] [data-tstid="priceInfo-original"]').text();
                 const color = $('[itemprop=color]').attr('content');
-                const sizes = $('[aria-label="[Product information]"] select').find('option').map(function() {return $(this).text().trim();}).get().slice(1);
+                const sizes = $('[aria-label="[Product information]"] select option').map(function() {return $(this).text().trim();}).get().slice(1);
 
                 const pageResult = {
                     url: request.url,
