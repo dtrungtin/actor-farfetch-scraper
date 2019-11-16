@@ -124,7 +124,7 @@ Apify.main(async () => {
                     }
 
                     const itemId = $(itemLinks[index]).attr('itemid');
-                    if (itemId === stopId) {
+                    if (itemId === stopId) { // TODO: Maybe loop forever
                         return;
                     }
 
@@ -137,6 +137,10 @@ Apify.main(async () => {
                 let params = querystring.parse(parsedUrl.query);
                 if (!params.page) {
                     return;
+                }
+
+                if (checkLimit()) {
+                    break;
                 }
 
                 params.page++;
