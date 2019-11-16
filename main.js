@@ -62,7 +62,7 @@ Apify.main(async () => {
 
         if (startUrl.includes('https://www.farfetch.com/')) {
             if (startUrl.match(/\d+.aspx/)) {
-                await requestQueue.addRequest({ url: startUrl, userData: { label: 'item' } });
+                await requestQueue.addRequest({ url: startUrl, userData: { label: 'item' } }, { forefront: true });
                 detailsEnqueued++;
             } else {
                 await requestQueue.addRequest({ url: startUrl, userData: { label: 'start' } });
@@ -99,7 +99,7 @@ Apify.main(async () => {
                     }
                     
                     const itemUrl = 'https://www.farfetch.com' + $(itemLinks[index]).attr('href');
-                    await requestQueue.addRequest({ url: `${itemUrl}`, userData: { label: 'item' } });
+                    await requestQueue.addRequest({ url: `${itemUrl}`, userData: { label: 'item' } }, { forefront: true });
                     detailsEnqueued++;
                 }
 
@@ -129,7 +129,7 @@ Apify.main(async () => {
                     }
 
                     const itemUrl = 'https://www.farfetch.com' + $(itemLinks[index]).attr('href');
-                    await requestQueue.addRequest({ url: `${itemUrl}`, userData: { label: 'item' } });
+                    await requestQueue.addRequest({ url: `${itemUrl}`, userData: { label: 'item' } }, { forefront: true });
                     detailsEnqueued++;
                 }
 
