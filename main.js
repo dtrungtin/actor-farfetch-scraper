@@ -140,7 +140,7 @@ Apify.main(async () => {
                 }
 
                 if (checkLimit()) {
-                    break;
+                    return;
                 }
 
                 params.page++;
