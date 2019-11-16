@@ -150,12 +150,15 @@ Apify.main(async () => {
 
                 await requestQueue.addRequest({ url: `${nextPageUrl}`, userData: { label: 'list', stopItemId: stopId } });
             } else if (request.userData.label === 'item') {
+                // Extract javascript from body
+                const javascriptStr = body.match(/']\s=\s\{.*?\}\s*</s)[0].replace("'] =", '').trim().slice(0, -1);
+                const json = safeEval(javascriptStr);
+
                 const name = $('span[itemprop=name]').text();
                 const itemId = $('[itemprop=productID]').attr('content');
                 const price = $('[aria-label="[Product information]"] [data-tstid="priceInfo-original"]').text();
                 const color = $('[itemprop=color]').attr('content');
-                const sizes = $('[aria-label="[Product information]"] select option').map(function() {return $(this).text().trim();}).get().slice(1);
-
+                const sizes = Object.values(json.productViewModel.sizes.available).map(s => s.description);
                 const pageResult = {
                     url: request.url,
                     name,
